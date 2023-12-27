@@ -105,6 +105,8 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+
+      
     </style>
 
     
@@ -188,28 +190,49 @@
     <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
 </div>
-<!-- <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+ <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+ 
+ <div class="container">
+  <div class="row">
+      <div class="col-sm-3 mx-auto">
+        
+        <form method="POST" action="/">
+          {% csrf_token %}
+         {{form}}
+         <input class="btn btn-info" type="submit" name="Create task">
+        
+        </form>
+      
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h class="card-title">
+              <h>
+               
+              {%for task in tasks%}
+                 <div>
+                    <a class="btn btn-info" href="{% url 'update_task' task.id %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                    <p>
+                    {%if task.complete == True%}
+                    <strike>{{task}}</strike>
+                    {%else%}
+                    <span>{{task}}</span>
+                    {%endif%}
+                  </p>
+              
+                 </div>
+              {% endfor %}
+              </h>
+            </h>
+            
+           
+          </div>
+        </div>
+        
+      </div>
+  </div>
+</div>
 
-<h><form method="POST" action="/">
-  {% csrf_token %}
- {{form}}
- <input type="submit" name="Create task">
-
-</form>
-{%for task in tasks%}
-   <div>
-      <a href="{% url 'update_task' task.id %}">Update</a>
-      <a href="{% url 'delete_task' task.id %}">Delete</a>
-      <p>{%if task.complete == True%}
-      <strike>{{task}}</strike>
-      {%else%}
-      <span>{{task}}</span>
-      {%endif%}
-      </p>
-
-   </div>
-{% endfor %}
-</h>
     </body>
 </html>
 
