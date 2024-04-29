@@ -1,12 +1,12 @@
 
-{% extends 'tasks/main.html' %}
+{% extends 'accounts/main.html' %}
 
 {% block content %}
 <div class="container">
   <div class="row">
       <div class="col-sm-10 mx-auto">
-        {% include 'tasks/nav.html' %}
-        {% include 'tasks/cards.html' %}
+        {% include 'accounts/nav.html' %}
+        {% include 'accounts/cards.html' %}
         
         <form method="POST" action="/">
           {% csrf_token %}

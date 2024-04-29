@@ -1,0 +1,37 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<div>
+    <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button> -->
+        <form method="get">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Search</button>
+        <!-- </form> -->
+    </form>
+</div>
+<div>
+    {%for Persondetail in person%}
+    <div>
+      
+       <p>
+     
+       <span>{{Persondetail}}</span>
+       
+     </p>
+ 
+    </div>
+ {% endfor %}
+</div>
+<!-- {% if results %}
+<ul>
+    {% for searchform in results %}
+    <li>{{ searchform.title }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+{%endblock%} -->
