@@ -1,37 +1,47 @@
 {% extends 'accounts/main.html' %}
 
+
 {% block content %}
-<div>
-    <!-- <form class="d-flex" role="search">
+ <!-- <div>
+ <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button> -->
+        <button class="btn btn-outline-success" type="submit">Search</button> 
         <form method="get">
             {% csrf_token %}
             {{ form }}
             <button type="submit">Search</button>
-        <!-- </form> -->
+        </form> 
     </form>
-</div>
-<div>
-    {%for Persondetail in person%}
-    <div>
-      
-       <p>
-     
-       <span>{{Persondetail}}</span>
-       
-     </p>
- 
+</div>  -->
+<link rel="stylesheet" href="/static/css/styles.css">
+<div class="row"> 
+    <div class="col-md">
+        <div class="container" >
+            <div class="card card-body custom-table2">
+                <h5>Search</h5>
+            </div>
+            <div class="table-wrapper">
+                <table class="table custom-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>PhoneNo</th>
+                        <th>Completed</th>
+                    </tr>
+                    {% for persondetail in person %}
+                        <tr>
+                            <td>{{ persondetail.Name }}</td>
+                            <td>{{ persondetail.Address }}</td>
+                            <td>{{ persondetail.email.email }}</td>
+                            <td>{{ persondetail.phoneno.Number }}</td>
+                            <td>Completed: {{ persondetail.complete }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div> 
     </div>
- {% endfor %}
 </div>
-<!-- {% if results %}
-<ul>
-    {% for searchform in results %}
-    <li>{{ searchform.title }}</li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No results found.</p>
-{% endif %}
-{%endblock%} -->
+{%endblock%}
+

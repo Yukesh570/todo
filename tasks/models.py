@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class PhoneNO(models.Model):
     STATUS=(
         ('Home','Home'),
@@ -20,27 +19,29 @@ class PhoneNO(models.Model):
 
 
 class Email(models.Model):
+    
+    email = models.CharField(max_length=200,null=True)
+    Personid = models.CharField(max_length=200,null=True)
     STATUS=(
         ('Home','Home'),
         ('college','college'),
         ('Office','Office'),
 
     )
-    email = models.CharField(max_length=200,null=True)
-    Personid = models.CharField(max_length=200,null=True)
     emailtype = models.CharField(max_length=200,null=True,choices=STATUS)
     
     def __str__(self):
         return self.Personid
      
 class Persondetail(models.Model):
-    phoneNO=models.ForeignKey(PhoneNO,null=True,on_delete=models.SET_NULL)
-    email=models.ForeignKey(Email,null=True,on_delete=models.SET_NULL)
-
+    
     Name = models.CharField(max_length=200,null=True)
     Address=models.CharField(max_length=200,null=True)
     complete=models.BooleanField(default=False,)
     created = models.DateTimeField(auto_now_add=True)
+    phoneno=models.ForeignKey(PhoneNO,null=True,on_delete=models.SET_NULL)
+    email=models.ForeignKey(Email,null=True,on_delete=models.SET_NULL)
+
 
     def __str__(self):
         return self.Name
@@ -58,9 +59,13 @@ class searchform(models.Model):
  
 
 class Task(models.Model):
-     id=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
-     title= models.CharField(max_length=200),
-     complete= models.BooleanField(default=False),
-     created= models.DateTimeField(auto_now_add=True),
+     
+    Name = models.CharField(max_length=200,null=True)
+    Address=models.CharField(max_length=200,null=True)
+    complete=models.BooleanField(default=False,)
+   
+
+    def __str__(self):
+        return self.Name  
      
 

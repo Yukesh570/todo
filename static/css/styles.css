@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing :border-box;
+
+
+}
+
+
+.custom-table {
+    background-color: rgb(8, 68, 88);
+    /* Add more styles as needed */
+}
+.custom-table2 {
+    background-color: rgb(57, 146, 175);
+    width: 120%;    /* Add more styles as needed */
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 auto;  */
+}
+body {
+    font-family: Arial, sans-serif; /* Set the font family */
+    background-color: #f0f0f0; /* Set the background color */
+    color: #333; /* Set the text color */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    /* align-items: center; */
+    justify-content:space-evenly;
+}
+.table-wrapper {
+    width: 120%; /* Set the width of the table wrapper */
+    overflow-x: 0 auto;
+    margin: 0 auto;  /* Add horizontal scroll if table content exceeds wrapper width */
+    
+}
+
+/* .table {
+
+    width: 120%; 
+
+} */
+
+.center{
+     
+     width: 100%;
+     margin: 0 auto; 
+
+    align-items: center;
+    justify-content: center;
+
+}

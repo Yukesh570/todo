@@ -3,7 +3,7 @@ from django.forms import ModelForm
 
 from .models import *
 
-class TaskForm (forms.ModelForm):
+class detailform (forms.ModelForm):
     class Meta:
         model = Persondetail
         fields='__all__'

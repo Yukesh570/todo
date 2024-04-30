@@ -48,3 +48,6 @@ body {
   color: #fff;
   border-bottom-color: #fff;
 }
+.custom-table {
+  background-color: rgb(4, 79, 104);
+}
