@@ -7,6 +7,17 @@ class detailform (forms.ModelForm):
     class Meta:
         model = Persondetail
         fields='__all__'
+        # exclude = ['phoneno', 'email']
+
+# class emailform (forms.ModelForm):
+#     class Meta:
+#         model = Email
+#         fields='__all__'
+
+# class phoneform (forms.ModelForm):
+#     class Meta:
+#         model = PhoneNO
+#         fields='__all__'
 
 
 class searchform(forms.ModelForm):

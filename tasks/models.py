@@ -8,7 +8,7 @@ class PhoneNO(models.Model):
         ('Office','Office'),
 
     )
-    user_id=models.IntegerField(null=True)
+    
     Number=models.IntegerField(null=True)
     Phonetype=models.CharField(max_length=200,null=True,choices=STATUS)
     vars=1
@@ -21,7 +21,6 @@ class PhoneNO(models.Model):
 class Email(models.Model):
     
     email = models.CharField(max_length=200,null=True)
-    Personid = models.CharField(max_length=200,null=True)
     STATUS=(
         ('Home','Home'),
         ('college','college'),
@@ -31,7 +30,7 @@ class Email(models.Model):
     emailtype = models.CharField(max_length=200,null=True,choices=STATUS)
     
     def __str__(self):
-        return self.Personid
+        return self.email
      
 class Persondetail(models.Model):
     
