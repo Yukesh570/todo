@@ -2,17 +2,23 @@
 {% extends 'accounts/main.html' %}
 
 {% block content %}
-<form method="POST" action="/update_task">
 
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" name="persondetail">
-</form>
-
-{%for i in detail%}
-  <p>{{i}}</p>
-{% endfor %}
-
+<div class="container flex-wrapper">
+    
+    <div class="form-wrapper ">
+        <div class="form-container flex-wrapper">
+            <form method="POST" action="/update_task">
+                {% csrf_token %}
+                <div class="form-content">
+                    {{ form.as_p }}
+                   
+                    <input type="submit" name="persondetail" class="btn btn-outline-success" value="Submit">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

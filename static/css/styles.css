@@ -14,38 +14,67 @@
 .custom-table2 {
     background-color: rgb(57, 146, 175);
     width: 120%;    /* Add more styles as needed */
+   
     align-items: center;
     justify-content: center;
     /* margin: 0 auto;  */
 }
-body {
-    font-family: Arial, sans-serif; /* Set the font family */
-    background-color: #f0f0f0; /* Set the background color */
-    color: #333; /* Set the text color */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    /* align-items: center; */
-    justify-content:space-evenly;
+.custom-table3 {
+    background-color: rgb(58, 193, 238);
+    width: 50%;    /* Add more styles as needed */
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 auto;  */
 }
+
 .table-wrapper {
     width: 120%; /* Set the width of the table wrapper */
     overflow-x: 0 auto;
-    margin: 0 auto;  /* Add horizontal scroll if table content exceeds wrapper width */
-    
+    display:block;
+
 }
 
-/* .table {
-
-    width: 120%; 
-
-} */
-
-.center{
-     
-     width: 100%;
-     margin: 0 auto; 
-
-    align-items: center;
+.container {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height as needed */
+}
+
+
+.form-container {
+    width: 100%; /* Set the width of the form container */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding to the form container */
+    border: 2px solid #fcfcfc; /* Add a border around the form */
+    border-radius: 5px; /* Add rounded corners to the form container */
+    background-color: rgba(19, 18, 18, 0.5); /* Set background color for the form container */
+}
+
+.form-content {
+    width: 100%; /* Set the width of the form content */
+    text-align: left;
+    align-items: center;
+    display:block;
 
 }
+
+.container2 {
+    display:flex;
+    width:max-content;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height as needed */
+}
+
+.container3{
+    display:block;
+
+    justify-content: center;
+    align-items: center;
+    margin: 300px;
+
+
+}
+
