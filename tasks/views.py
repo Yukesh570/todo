@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.shortcuts import get_object_or_404
 
 
 def search(request):
@@ -9,7 +10,7 @@ def search(request):
     query= request.GET['query']
     # person=Persondetail.objects.all()
     person=Persondetail.objects.filter(Name__icontains=query)
-
+    
     # if request.method=='GET': 
     #     form=searchform(request.GET)
     #     if form.is_valid():
@@ -39,17 +40,32 @@ def index(request):
     # context={'tasks':tasks , 'form':form}
     return render(request,'accounts/list.html')
   
+def error(request):
+    return render(request,'accounts/error.html')
+
+    
 def updateTask(request):
-    detail=Persondetail.objects.all()
+    
     form=detailform()
+    form1=emailform()
+    form2=phoneform()
+
     if request.method =="POST":
         form=detailform(request.POST)
-        if form.is_valid():
+        form1=emailform(request.POST)
+        form2=phoneform(request.POST)
+        if form.is_valid() and form1.is_valid and form2.is_valid :
             form.save()
+            form1.save()
+            form2.save()
             return redirect('/update_task')
-    context= {'form':form ,'detail':detail}
+        else:
+            return HttpResponse('error.html')
+        asdfsadfsad
+    
+     
+    context= {'form':form,'form1':form1,'form2':form2  }
     return render(request,'accounts/update_task.html',context)
-
    #     task= Email.objects.get(id=pk)
 
 #     form = TaskForm(instance=task)

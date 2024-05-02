@@ -13,10 +13,7 @@ class PhoneNO(models.Model):
     Phonetype=models.CharField(max_length=200,null=True,choices=STATUS)
     vars=1
 
-    def __num__(self):
-        return "userid",vars
-    vars=vars +1
-
+  
 
 class Email(models.Model):
     
@@ -40,8 +37,7 @@ class Persondetail(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     phoneno=models.ForeignKey(PhoneNO,null=True,on_delete=models.SET_NULL)
     email=models.ForeignKey(Email,null=True,on_delete=models.SET_NULL)
-
-
+    # Assuming you have an Email object and you want to update a Persondetail instance with it
     def __str__(self):
         return self.Name
     # def __str__(self):
