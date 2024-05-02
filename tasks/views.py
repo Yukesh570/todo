@@ -41,31 +41,50 @@ def index(request):
     return render(request,'accounts/list.html')
   
 def error(request):
-    return render(request,'accounts/error.html')
+    detail=Persondetail.objects.all()
+
+    return render(request,'accounts/error.html',{'detail':detail})
 
     
 def updateTask(request):
     
     form=detailform()
-    form1=emailform()
-    form2=phoneform()
+    # form1=emailform()
+    # form2=phoneform()
 
     if request.method =="POST":
-        form=detailform(request.POST)
-        form1=emailform(request.POST)
-        form2=phoneform(request.POST)
-        if form.is_valid() and form1.is_valid and form2.is_valid :
-            form.save()
-            form1.save()
-            form2.save()
-            return redirect('/update_task')
-        else:
-            return HttpResponse('error.html')
-        asdfsadfsad
-    
+        print (request.POST)
+        
+        name=request.POST.get("name")
+        address=request.POST.get("Address")
+        email=request.POST.get("Email")
+        number=request.POST.get("PhoneNo")
+        # form1=PhoneNO.objects.get_or_create(PhoneNO=number)
+        form2,created=PhoneNO.objects.get_or_create(Number=number)
+        form1,created1=Email.objects.get_or_create(email=email)
+        form=Persondetail(Name=name,Address=address,email=form1, phoneno=form2)
+
+        # form1.save()
+        # form2.save()
+        form.save()
+        # form=detailform(request.POST) 
+        print(form)
+
+        # form1=emailform(request.POST)
+        # form2=phoneform(request.POST)
+        # if form.is_valid():
+        # and form1.is_valid and form2.is_valid :
+            # form.save()
+            # form1.save()
+            # form2.save()
+        #     return redirect('/update_task')
+        # else:
+            # return HttpResponse('error.html')
+        
+    # 'form1':form1,'form2':form2
      
-    context= {'form':form,'form1':form1,'form2':form2  }
-    return render(request,'accounts/update_task.html',context)
+    # context= {'form':form  }
+    return render(request,'accounts/update_task.html')
    #     task= Email.objects.get(id=pk)
 
 #     form = TaskForm(instance=task)
