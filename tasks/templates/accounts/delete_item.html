@@ -1,0 +1,20 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<h1>deleted</h1>
+<div class="deletecontainer">
+    {{detail.Name}} 
+    {{detail.Address}}
+    {{detail.complete}}
+    {{detail.phoneno.Number}}({{detail.phoneno.Phonetype}})
+    {{detail.email.email}}({{detail.email.emailtype}})
+</div>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" name="Confirm"> 
+    </form>
+
+    <!-- <button  onclick="window.location.href='{{table}}';">Cancel</button> -->
+</div>
+{%endblock%}

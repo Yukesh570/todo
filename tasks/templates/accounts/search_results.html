@@ -39,6 +39,8 @@
                             <td>{{ persondetail.phoneno.Number }} ({{ persondetail.phoneno.get_Phonetype_display }})</td>
                             <td>Completed: {{ persondetail.complete }}</td>
                             <td><a href="{%url 'edit' persondetail.id %}">Edit</a></td>
+                            <td><a href="{%url 'delete_item' persondetail.id%}">delete</a></td>
+
                             <!-- <td><a href="url">delete</a></td> -->
                         </tr>
                     {% endfor %}

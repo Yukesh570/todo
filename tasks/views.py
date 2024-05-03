@@ -55,10 +55,16 @@ def error(request):
 
     return render(request,'accounts/error.html',{'detail':detail})
 
-
+def delete(request,pk):
+    detail=Persondetail.objects.get(id=pk)
+    if request.method=='POST':
+        detail.delete()
+        return redirect('/table')
+    return render (request,'accounts/delete_item.html',{'detail':detail})
+    # return HttpResponse('delete_item.html')
+    
 def edit(request,pk):
     detail=Persondetail.objects.get(id=pk)
-    form=detailform(instance=detail)
     # print('=======================================',detail)
     if request.method=='POST':
         
