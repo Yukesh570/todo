@@ -7,15 +7,15 @@ from django.db import models
 
 
 class PhoneNO(models.Model):
-    # STATUS=(
-    #     ('Home','Home'),
-    #     ('Mobile','Mobile'),
-    #     ('Office','Office'),
+    STATUS=(
+        ('Home','Home'),
+        ('Mobile','Mobile'),
+        ('Office','Office'),
 
-    # )
+    )
     
     Number=models.IntegerField(null=True)
-    # Phonetype=models.CharField(max_length=200,null=True,choices=STATUS) 
+    Phonetype=models.CharField(max_length=200,null=True,choices=STATUS) 
     # persondetail=models.ForeignKey(Persondetail,null=True,on_delete=models.SET_NULL)
 
     def __str__(self):
@@ -24,16 +24,16 @@ class PhoneNO(models.Model):
 class Email(models.Model):
     
     email = models.CharField(max_length=200,null=True)
-    # STATUS=(
-    #     ('Home','Home'),
-    #     ('college','college'),
-    #     ('Office','Office'),
+    STATUS=(
+        ('Home','Home'),
+        ('college','college'),
+        ('Office','Office'),
 
-    # )
-    # emailtype = models.CharField(max_length=200,null=True,choices=STATUS)
+    )
+    emailtype = models.CharField(max_length=200,null=True,choices=STATUS)
     # persondetail=models.ForeignKey(Persondetail,null=True,on_delete=models.SET_NULL)
     def __str__(self):
-        return self.email
+        return str(self.email)
     
 
 class Persondetail(models.Model):
