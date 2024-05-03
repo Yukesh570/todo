@@ -9,7 +9,13 @@ def search(request):
     results =None
     query= request.GET['query']
     # person=Persondetail.objects.all()
-    person=Persondetail.objects.filter(Name__icontains=query)
+    if not query:
+        return render(request,'accounts/error.html' )
+
+    else:
+        person=Persondetail.objects.filter(Name__icontains=query)
+        context={'person':person}
+        return render(request,'accounts/search_results.html',context )
     
     # if request.method=='GET': 
     #     form=searchform(request.GET)
@@ -18,14 +24,18 @@ def search(request):
 
     #         results=searchform.object.filter(title__icontains=query)
     
-    context={'person':person}
-    return render(request,'accounts/search_results.html',context )
+    
         # else:
         #      form=searchform()
         
 
             
-     
+def table(request):
+    person=Persondetail.objects.all
+    return render(request,"accounts/table.html",{'person':person})
+
+
+
 def index(request):
     # tasks=Task.objects.all()
 
@@ -44,6 +54,31 @@ def error(request):
     detail=Persondetail.objects.all()
 
     return render(request,'accounts/error.html',{'detail':detail})
+
+
+def edit(request,pk):
+    detail=Persondetail.objects.get(id=pk)
+    form=detailform(instance=detail)
+    if request.method=='POST':
+        
+        name=request.POST.get("name")
+        address=request.POST.get("address")
+        email=request.POST.get("email")
+        number=request.POST.get("phone")
+        emailtype=request.POST.get("emailtype")
+        phonetype=request.POST.get("phonetype")
+ 
+        # emailtype=request.POST.get()
+        # form1=PhoneNO.objects.get_or_create(PhoneNO=number)
+        form2,created=PhoneNO.objects.get_or_create(Number=number,Phonetype=phonetype)
+        form1,created1=Email.objects.get_or_create(email=email,emailtype=emailtype)
+        Persondetail(Name=name,Address=address,email=form1, phoneno=form2)
+        
+        print("-------------------------------------------------",detail)
+        detail.save()
+
+    return render(request,'accounts/edit.html',{'form':form})
+
 
     
 def updateTask(request):

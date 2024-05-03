@@ -1,24 +1,38 @@
 from django import forms
 from django.forms import ModelForm
-from django.forms import inlineformset_factory
+from django.forms.models import inlineformset_factory
 
 from .models import *
+
+class emailform (forms.ModelForm):
+    class Meta:
+        model = Email
+        fields='__all__'
+
+class phoneform (forms.ModelForm):
+    class Meta:
+        model = PhoneNO
+        fields='__all__'
+
+
+# Phoneformset = inlineformset_factory(
+#     Persondetail ,PhoneNO , form=phoneform,extra=1,can_delete=True, fk_name='Persondetail'
+# )
+# Emailformset= inlineformset_factory(
+#     Persondetail ,Email , form=emailform,extra=1,can_delete=True
+# )
 
 class detailform (forms.ModelForm):
     class Meta:
         model = Persondetail
         fields='__all__'
         # exclude = ['phoneno', 'email']
+    # def __init__(self, *args, **kwargs):
+    #     super(detailForm, self).__init__(*args, **kwargs)
+    #     self.fields['phoneno'] = Phoneformset(instance=self.instance)
+    #     self.fields['email'] = Emailformset(instance=self.instance)
 
-# class emailform (forms.ModelForm):
-#     class Meta:
-#         model = Email
-#         fields='__all__'
 
-# class phoneform (forms.ModelForm):
-#     class Meta:
-#         model = PhoneNO
-#         fields='__all__'
 
 
 class searchform(forms.ModelForm):

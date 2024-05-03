@@ -1,23 +1,9 @@
 <!-- <h1>sdfsdf</h1> -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Person Detail</title>
-</head>
-<body>
-    <h1>Person Detail</h1>
-    <ul>
-        {% for person in detail %}
-            <li>
-                Name: {{ person.Name }} <br>
-                Address: {{ person.Address }} <br>
-                Phone Number: {{ person.phoneno.Number }} ({{ person.phoneno.get_Phonetype_display }}) <br>
-                Email: {{ person.email.email }} ({{ person.email.get_emailtype_display }}) <br>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'accounts/main.html' %}
+
+
+{% block content %}
+
+<h3>Match not found</h3>
+{%endblock%}
