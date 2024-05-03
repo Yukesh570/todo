@@ -59,25 +59,29 @@ def error(request):
 def edit(request,pk):
     detail=Persondetail.objects.get(id=pk)
     form=detailform(instance=detail)
+    # print('=======================================',detail)
     if request.method=='POST':
         
-        name=request.POST.get("name")
-        address=request.POST.get("address")
-        email=request.POST.get("email")
-        number=request.POST.get("phone")
-        emailtype=request.POST.get("emailtype")
-        phonetype=request.POST.get("phonetype")
- 
+        detail.Name=request.POST.get("name")
+        detail.Address=request.POST.get("address")
+        detail.email.email=request.POST.get("email")
+        detail.phoneno.Number=request.POST.get("phone")
+        detail.email.emailtype=request.POST.get("emailtype")
+        detail.phoneno.Phonetype=request.POST.get("phonetype")
+
         # emailtype=request.POST.get()
         # form1=PhoneNO.objects.get_or_create(PhoneNO=number)
-        form2,created=PhoneNO.objects.get_or_create(Number=number,Phonetype=phonetype)
-        form1,created1=Email.objects.get_or_create(email=email,emailtype=emailtype)
-        Persondetail(Name=name,Address=address,email=form1, phoneno=form2)
-        
-        print("-------------------------------------------------",detail)
+        # form2,created=PhoneNO.objects.get_or_create(Number=number,Phonetype=phonetype)
+        # form1,created1=Email.objects.get_or_create(email=email,emailtype=emailtype)
+        # print('-------------------------------',form)
+        # form=Persondetail(Name=name,Address=address,email=form1, phoneno=form2)
+        # form=detailform(request.POST,instance=detail)
+        print("-------------------------------------------------",detail.email.email)
         detail.save()
+        detail.phoneno.save()
+        detail.email.save()
 
-    return render(request,'accounts/edit.html',{'form':form})
+    return render(request,'accounts/edit.html',{'detail':detail})
 
 
     
