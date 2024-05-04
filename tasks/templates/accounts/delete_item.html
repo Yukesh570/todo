@@ -1,20 +1,51 @@
+
 {% extends 'accounts/main.html' %}
 
-{% block content %}
-<h1>deleted</h1>
-<div class="deletecontainer">
-    {{detail.Name}} 
-    {{detail.Address}}
-    {{detail.complete}}
-    {{detail.phoneno.Number}}({{detail.phoneno.Phonetype}})
-    {{detail.email.email}}({{detail.email.emailtype}})
-</div>
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <input type="submit" name="Confirm"> 
-    </form>
 
-    <!-- <button  onclick="window.location.href='{{table}}';">Cancel</button> -->
+{% block content %}
+
+<div class="container" >
+    <div class="row"> 
+       <div class="col-md">
+        
+            <div class="card card-body custom-table2 ">
+                <h5>Delete item</h5>
+            </div>
+            <div class="table-wrapper">
+                <table class="table ">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>PhoneNo</th>
+                        <th>Completed</th>
+                        
+                    </tr>
+                    
+                        <tr>
+                            <td>{{ detail.Name }}</td>
+                            <td>{{ detail.Address }}</td>
+                            <td>{{ detail.email.email }}({{ detail.email.get_emailtype_display }})</td>
+                            <td>{{ detail.phoneno.Number }} ({{ detail.phoneno.get_Phonetype_display }})</td>
+                            <td>Completed: {{ detail.complete }}</td>
+                           
+
+                            <!-- <td><a href="url">delete</a></td> -->
+                        </tr>
+                    
+                </table>
+                <div>
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <a ><button>Confirm</button></a>
+                    </form>
+                    <form action="/table">
+                    <a ><button>Cancel</button></a>
+                </form>
+                 </div>
+            </div>
+        </div> 
+    </div>
 </div>
 {%endblock%}
+

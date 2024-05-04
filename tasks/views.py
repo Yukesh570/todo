@@ -86,6 +86,8 @@ def edit(request,pk):
         detail.save()
         detail.phoneno.save()
         detail.email.save()
+        return redirect('/table')
+
 
     return render(request,'accounts/edit.html',{'detail':detail})
 

@@ -82,11 +82,13 @@ body {
     display: block;
 }
 /* CSS for delete container */
-.deletecontainer {
-    display: block;
-    background-color: #f8f9fa; /* Light gray background */
-    border: 1px solid #ced4da; /* Border color */
-    padding: 20px; /* Padding around the container */
-    margin-bottom: 20px; /* Margin bottom to separate from other elements */
+
+.form-contain {
+    width: 100%; /* Set the width of the form container */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding to the form container */
+    border: 2px solid #fcfcfc; /* Add a border around the form */
+    border-radius: 5px; /* Add rounded corners to the form container */
+    background-color: rgba(19, 18, 18, 0.5); /* Set background color for the form container */
 }
 
