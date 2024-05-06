@@ -21,7 +21,8 @@
                     <div class="form-field">
                         <label for="email">Email:</label>
                         <input type="text" value="{{detail.email.email}}" id="email" name="email">
-                        <select name="emailtype">
+                        <select name="emailtype" id="emailtype">
+                            <option >{{detail.email.emailtype}}</option>
                             <option value="Home">Home</option>
                             <option value="college">college</option>
                             <option value="Office">Office</option>
@@ -30,7 +31,8 @@
                     <div class="form-field">
                         <label for="phone">Phone Number:</label>
                         <input type="text" value="{{detail.phoneno.Number}}"id="phone" name="phone">
-                        <select name="phonetype">
+                        <select name="phonetype" id="phonetype">
+                            <option>{{detail.phoneno.Phonetype}}</option>
                             <option value="Home">Home</option>
                             <option value="Mobile">Mobile</option>
                             <option value="Office">Office</option>

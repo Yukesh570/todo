@@ -1,0 +1,58 @@
+{% extends 'accounts/main.html' %}
+
+
+{% block content %}
+ 
+<style>
+    .logcontainer{
+      position: fixed; /* Position the container relative to the viewport */
+      top: 10px; /* Adjust the top position as needed */
+      right: 10px;
+    }
+    .username {
+      font-size:medium; /* Adjust the font size as needed */
+      margin-left: 5px; /* Adjust the margin as needed */
+  
+              }
+</style>
+<div class="container" >
+    <div class="logcontainer">
+        <h1 class="username">{{request.user}}</h1>
+    
+        <a href="{%url 'logout'%}">Logout</a>
+    </div>
+    <div class="row"> 
+       <div class="col-md">
+        
+            <div class="card card-body custom-table2 ">
+                <h5>Table</h5>
+            </div>
+            <div class="table-wrapper">
+                <table class="table ">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>PhoneNo</th>
+                        <th>Completed</th>
+                        
+                    </tr>
+                    {% for persondetail in person %}
+                        <tr>
+                            <td>{{ persondetail.Name }}</td>
+                            <td>{{ persondetail.Address }}</td>
+                            <td>{{ persondetail.email.email }}({{ persondetail.email.get_emailtype_display }})</td>
+                            <td>{{ persondetail.phoneno.Number }} ({{ persondetail.phoneno.get_Phonetype_display }})</td>
+                            <td>Completed: {{ persondetail.complete }}</td>
+                            
+
+                            <!-- <td><a href="url">delete</a></td> -->
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div> 
+    </div>
+</div>
+{%endblock%}
+

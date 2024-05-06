@@ -5,10 +5,14 @@ from .forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user,admin_only
+from django.contrib.auth.models import Group
 
 
 
 @login_required(login_url='login')
+@admin_only
+
 def search(request):
     results =None
     query= request.GET['query']
@@ -34,12 +38,20 @@ def search(request):
         
 
 @login_required(login_url='login')
+@admin_only
+
 def table(request):
     person=Persondetail.objects.all
     return render(request,"accounts/table.html",{'person':person})
 
+@login_required(login_url='login')
+def user_table(request):
+    person=Persondetail.objects.all
+    return render(request,"accounts/user_table.html",{'person':person})
+
 
 @login_required(login_url='login')
+@admin_only
 def index(request):
     # tasks=Task.objects.all()
 
@@ -60,6 +72,8 @@ def error(request):
     return render(request,'accounts/error.html',{'detail':detail})
 
 @login_required(login_url='login')
+@admin_only
+
 def delete(request,pk):
     detail=Persondetail.objects.get(id=pk)
     if request.method=='POST':
@@ -70,6 +84,8 @@ def delete(request,pk):
     
 
 @login_required(login_url='login')
+@admin_only
+
 def edit(request,pk):
     detail=Persondetail.objects.get(id=pk)
     # print('=======================================',detail)
@@ -98,39 +114,40 @@ def edit(request,pk):
 
     return render(request,'accounts/edit.html',{'detail':detail})
 
-
+@unauthenticated_user
 def user_login(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    else:
-        if request.method=='POST':
-            username=request.POST.get('username')
-            password=request.POST.get('password')
-            user=authenticate(request, username=username,password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('/')
-        return render (request,'accounts/login.html')
+  
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request, username=username,password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+    return render (request,'accounts/login.html')
 
 def user_logout(request):
     logout(request)
     return redirect('login')
 
-def register(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    else:
-        registration = CreateUserForm()
-        if request.method=='POST':
-            registration=CreateUserForm(request.POST)
-            if registration.is_valid():
-                registration.save()
-                return redirect('/')
 
-        return render (request,'accounts/register.html',{'registration':registration})
+@unauthenticated_user
+def register(request):
+    registration = CreateUserForm()
+    if request.method=='POST':
+        registration=CreateUserForm(request.POST)
+        if registration.is_valid():
+            user=registration.save()
+            group=Group.objects.get(name='customer')
+            user.groups.add(group)
+            return redirect('/')
+
+    return render (request,'accounts/register.html',{'registration':registration})
 
 
 @login_required(login_url='login')    
+@admin_only
+
 def updateTask(request):
     
     form=detailform()
