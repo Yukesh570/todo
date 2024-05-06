@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
+
+@login_required(login_url='login')
 def search(request):
     results =None
     query= request.GET['query']
@@ -29,13 +33,13 @@ def search(request):
         #      form=searchform()
         
 
-            
+@login_required(login_url='login')
 def table(request):
     person=Persondetail.objects.all
     return render(request,"accounts/table.html",{'person':person})
 
 
-
+@login_required(login_url='login')
 def index(request):
     # tasks=Task.objects.all()
 
@@ -55,6 +59,7 @@ def error(request):
 
     return render(request,'accounts/error.html',{'detail':detail})
 
+@login_required(login_url='login')
 def delete(request,pk):
     detail=Persondetail.objects.get(id=pk)
     if request.method=='POST':
@@ -63,6 +68,8 @@ def delete(request,pk):
     return render (request,'accounts/delete_item.html',{'detail':detail})
     # return HttpResponse('delete_item.html')
     
+
+@login_required(login_url='login')
 def edit(request,pk):
     detail=Persondetail.objects.get(id=pk)
     # print('=======================================',detail)
@@ -92,7 +99,38 @@ def edit(request,pk):
     return render(request,'accounts/edit.html',{'detail':detail})
 
 
-    
+def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    else:
+        if request.method=='POST':
+            username=request.POST.get('username')
+            password=request.POST.get('password')
+            user=authenticate(request, username=username,password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+        return render (request,'accounts/login.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')
+
+def register(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    else:
+        registration = CreateUserForm()
+        if request.method=='POST':
+            registration=CreateUserForm(request.POST)
+            if registration.is_valid():
+                registration.save()
+                return redirect('/')
+
+        return render (request,'accounts/register.html',{'registration':registration})
+
+
+@login_required(login_url='login')    
 def updateTask(request):
     
     form=detailform()

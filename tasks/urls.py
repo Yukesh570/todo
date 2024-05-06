@@ -8,6 +8,10 @@ urlpatterns=[
     path('updatetask', views.updateTask,name="update_task"),
     path('edit/<str:pk>', views.edit,name="edit"),
     path('table', views.table,name="table"),
+    path('login', views.user_login,name="login"),
+    path('register', views.register,name="register"),
+    path('logout', views.user_logout,name="logout"),
+
 
 
 ]

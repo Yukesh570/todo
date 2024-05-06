@@ -1,0 +1,57 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<style>
+    .contain{
+        display: flex;
+        flex-direction: column;
+        width: 300px; 
+        margin: auto;
+    }
+    .form-contain {
+    /* width: 100%;  */
+   
+
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 5px; /* Add padding to the form container */
+    border: 2px solid #fcfcfc; /* Add a border around the form */
+    border-radius: 5px; /* Add rounded corners to the form container */
+    background-color: rgba(19, 18, 18, 0.5); /* Set background color for the form container */
+    box-sizing:border-box; /* Include padding and border in the element's total width and height */
+
+}
+
+    .container0 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%; /* Adjust the width as needed */
+        height: 70%;
+   
+                }
+
+
+
+</style>
+<div class=" container0 form-contain ">
+
+    <form method="POST" action="">
+
+    
+    <div class="contain">
+        <h3>Register</h3>
+
+        {%csrf_token%}
+
+        {%for fields in registration%}
+        {{fields.label}}
+        {{fields}}
+        {% endfor %}
+    </div>
+    <input type="submit" name="Create User">
+    </form>
+</div>
+
+
+{% endblock %}
