@@ -1,22 +1,49 @@
 <style>
-  .logcontainer{
-    position: fixed; /* Position the container relative to the viewport */
-    top: 10px; /* Adjust the top position as needed */
-    right: 10px;
-  }
-  .username {
-    font-size:medium; /* Adjust the font size as needed */
-    margin-left: 5px; /* Adjust the margin as needed */
+    .logcontainer{
+      display: flex;
+      position: fixed; /* Position the container relative to the viewport */
+      top: 10px; /* Adjust the top position as needed */
+      right: 10px;
+      align-items:center; /* Align items vertically at the center */
 
-            }
+    }
+    .username {
+     color: white; /* Text color */
+     border: 2px solid  rgb(58, 193, 238); /* Border color */
+     border-radius: 5px; /* Add rounded corners to the form container */
+     height: 38px;
+     width: 100px;
+     font-size:medium; /* Adjust the font size as needed */
+      margin-left: 5px; /* Adjust the margin as needed */
+      margin-right: 10px;
+      margin-top: 8px;
+      padding-top: 5px; /* Add padding to move the text inside the box down */
+
+      
+    }
+    .username:hover {
+    background-color: rgb(58, 193, 238); /* Background color on hover */
+    border-color: rgb(58, 193, 238); /* Border color on hover */
+}
+
+    .btn.btn-outline-red {
+    color: red; /* Text color */
+    border-color: red; /* Border color */
+}
+
+.btn.btn-outline-red:hover {
+    background-color: darkred; /* Background color on hover */
+    border-color: darkred; /* Border color on hover */
+}
 </style>
 
 <div class="container2 " >
   <div class="logcontainer">
     <h1 class="username">{{request.user}}</h1>
 
-    <a href="{%url 'logout'%}">Logout</a>
-</div>
+    <form action="/logout">
+      <button class="btn btn-outline-red" type="submit">logout</button>
+    </form></div>
 <form class="d-flex" role="search" method="get" action="/search">
   <!-- method="get" action="/search"   this enable to go to the search url when you click search button due to get parameter-->
   

@@ -2,9 +2,108 @@
 
 
 {% block content %}
+<style>
+    .logcontainer{
+      display: flex;
+      position: fixed; /* Position the container relative to the viewport */
+      top: 10px; /* Adjust the top position as needed */
+      right: 10px;
+      align-items:center; /* Align items vertically at the center */
+
+    }
+    .username {
+     color: white; /* Text color */
+     border: 2px solid  rgb(58, 193, 238); /* Border color */
+     border-radius: 5px; /* Add rounded corners to the form container */
+     height: 38px;
+     width: 100px;
+     font-size:medium; /* Adjust the font size as needed */
+      margin-left: 5px; /* Adjust the margin as needed */
+      margin-right: 10px;
+      margin-top: 8px;
+      padding-top: 5px; /* Add padding to move the text inside the box down */
+
+      
+    }
+    .username:hover {
+    background-color: rgb(58, 193, 238); /* Background color on hover */
+    border-color: rgb(58, 193, 238); /* Border color on hover */
+}
+    .btn.btn-outline-red {
+    color: red; /* Text color */
+    border-color: red; /* Border color */
+}
+
+.btn.btn-outline-red:hover {
+    background-color: darkred; /* Background color on hover */
+    border-color: darkred; /* Border color on hover */
+}
+
+
+    .custom-table2 {
+    background-color: rgb(57, 146, 175);
+    width: 120%; /* Adjust width as needed */
+    height: 50px; /
+    
+    }
+    .container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-left: 21%;
+
+   
+}
+
+    .containercustomer {
+    display: block;
+
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    width: 50%;
+    margin: 0 auto;
+   
+    }
+    .serachbar{
+        margin-left: 21%;
+
+        width: 100%;
+    }
+  
+
+    
+</style>
+
  
 <div class="container" >
-    <div class="row"> 
+    {%if request.user.is_staff%}
+
+    {%else%}
+
+    <div class="logcontainer">
+        <h1 class="username">{{request.user}}</h1>
+    
+        <form action="/logout">
+            <button class="btn btn-outline-red" type="submit">logout</button>
+          </form>
+    </div>
+    <div class="containercustomer" >
+    <div class="serachbar">
+    <form class="d-flex" role="search" method="get" action="/search">
+        <!-- method="get" action="/search"   this enable to go to the search url when you click search button due to get parameter-->
+        
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="search">
+      <!--  name="query" id="search" (the txt inputed in the search form is sent to name eg http://127.0.0.1:8000/search?query=asd)-->
+        
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    </div>
+    </div>
+    {%endif%}
+
+    <div class="row tablemove"> 
        <div class="col-md">
         
             <div class="card card-body custom-table2 ">
@@ -18,8 +117,10 @@
                         <th>Email</th>
                         <th>PhoneNo</th>
                         <th>Completed</th>
+                        {%if request.user.is_staff%}
                         <th>edit</th>
                         <th>delete</th>
+                        {%endif%}
                     </tr>
                     {% for persondetail in person %}
                         <tr>
@@ -28,8 +129,11 @@
                             <td>{{ persondetail.email.email }}({{ persondetail.email.get_emailtype_display }})</td>
                             <td>{{ persondetail.phoneno.Number }} ({{ persondetail.phoneno.get_Phonetype_display }})</td>
                             <td>Completed: {{ persondetail.complete }}</td>
+                            {%if request.user.is_staff%}
+
                             <td><a href="{%url 'edit' persondetail.id %}">Edit</a></td>
                             <td><a href="{%url 'delete_item' persondetail.id%}">delete</a></td>
+                            {%endif%}
 
                             <!-- <td><a href="url">delete</a></td> -->
                         </tr>

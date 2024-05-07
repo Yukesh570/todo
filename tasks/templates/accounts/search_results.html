@@ -28,8 +28,10 @@
                         <th>Email</th>
                         <th>PhoneNo</th>
                         <th>Completed</th>
+                        {%if request.user.is_staff%}
                         <th>edit</th>
                         <th>delete</th>
+                        {%endif%}
                     </tr>
                     {% for persondetail in person %}
                         <tr>
@@ -38,8 +40,11 @@
                             <td>{{ persondetail.email.email }}({{ persondetail.email.get_emailtype_display }})</td>
                             <td>{{ persondetail.phoneno.Number }} ({{ persondetail.phoneno.get_Phonetype_display }})</td>
                             <td>Completed: {{ persondetail.complete }}</td>
+                            {%if request.user.is_staff%}
+
                             <td><a href="{%url 'edit' persondetail.id %}">Edit</a></td>
                             <td><a href="{%url 'delete_item' persondetail.id%}">delete</a></td>
+                            {%endif%}
 
                             <!-- <td><a href="url">delete</a></td> -->
                         </tr>

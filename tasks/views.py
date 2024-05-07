@@ -11,7 +11,6 @@ from django.contrib.auth.models import Group
 
 
 @login_required(login_url='login')
-@admin_only
 
 def search(request):
     results =None
@@ -38,16 +37,15 @@ def search(request):
         
 
 @login_required(login_url='login')
-@admin_only
 
 def table(request):
     person=Persondetail.objects.all
     return render(request,"accounts/table.html",{'person':person})
 
-@login_required(login_url='login')
-def user_table(request):
-    person=Persondetail.objects.all
-    return render(request,"accounts/user_table.html",{'person':person})
+# @login_required(login_url='login')
+# def user_table(request):
+#     person=Persondetail.objects.all
+#     return render(request,"accounts/user_table.html",{'person':person})
 
 
 @login_required(login_url='login')
@@ -176,10 +174,10 @@ def updateTask(request):
         form1,created1=Email.objects.get_or_create(email=email,emailtype=emailtype)
         form=Persondetail(Name=name,Address=address,email=form1, phoneno=form2)
         form.save()
+        return redirect('/')
         # form1.save()
         # form2.save()
         # form=detailform(request.POST) 
-        print('data:',form)
 
         # form1=emailform(request.POST)
         # form2=phoneform(request.POST)

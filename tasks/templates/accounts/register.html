@@ -3,21 +3,44 @@
 {% block content %}
 
 <style>
+    body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-color: rgba(19, 18, 18, 0.5); /* Set background color for the form container */
+		}
+    .user_card {
+        width: 350px;
+        margin-top: 80px;
+        margin-bottom: auto;
+        border: 2px solid #fcfcfc; /* Add a border around the form */
+        border-radius: 5px;
+        background: rgba(19, 18, 18, 0.5);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+
+    }
+    
     .contain{
         display: flex;
         flex-direction: column;
         width: 300px; 
         margin: auto;
     }
-    .form-contain {
+    .form-contain0 {
     /* width: 100%;  */
    
 
     margin: 0 auto; /* Center the form horizontally */
     padding: 5px; /* Add padding to the form container */
-    border: 2px solid #fcfcfc; /* Add a border around the form */
-    border-radius: 5px; /* Add rounded corners to the form container */
-    background-color: rgba(19, 18, 18, 0.5); /* Set background color for the form container */
     box-sizing:border-box; /* Include padding and border in the element's total width and height */
 
 }
@@ -30,11 +53,35 @@
         height: 70%;
    
                 }
+                
 
+    .login_btn {
+	    width: 100%;
+		border-color: #33ccff ;
+		color: #33ccff !important;
+		}
+		
+	.login_btn:hover {
+		 color: white !important;
+
+   		 background-color: #33ccff; /* Background color on hover */
+		 border-color: #33ccff; /* Border color on hover */
+			}
+	.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+                
+    .login_container {
+        padding: 0 2rem;
+    }
 
 
 </style>
-<div class=" container0 form-contain ">
+<div class=" container0 form-contain0  ">
+    <div class="d-flex justify-content-center h-100"></div>
+    <div class="user_card">
+
 
     <form method="POST" action="">
 
@@ -49,8 +96,19 @@
         {{fields}}
         {% endfor %}
     </div>
-    <input type="submit" name="Create User">
+    <div class="d-flex justify-content-center mt-3 login_container">
+        <input class="btn login_btn" type="submit" value="submit">
+      </div>   
     </form>
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+           Already have an account? <a href="{% url 'login' %}" class="ml-2">login</a>
+        </div>
+
+    </div>
+    </div>
+</div>
+
 </div>
 
 
